@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Birthday App Hub</title>
     <meta name="description" content="Birthday application selection portal. Access v1.0 and v2.0.">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;700&family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
@@ -15,7 +16,7 @@
             --accent: #6366f1;
             --accent-muted: #94a3b8;
             --glass: rgba(255, 255, 255, 0.9);
-            --glass-border: rgba(99, 102, 241, 0.15); /* More visible border */
+            --glass-border: rgba(99, 102, 241, 0.15);
             --font-jp: 'Noto Serif JP', serif;
             --font-en: 'Plus Jakarta Sans', sans-serif;
         }
@@ -54,6 +55,16 @@
             position: relative;
             z-index: 2;
             margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .header-image {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 10px 20px rgba(99, 102, 241, 0.15));
         }
 
         .label-top {
@@ -111,10 +122,10 @@
             background: var(--glass);
             padding: clamp(25px, 5vw, 45px);
             border-radius: 0 45px 45px 45px;
-            border: 1.5px solid var(--glass-border); /* Thicker and colored border */
+            border: 1.5px solid var(--glass-border);
             -webkit-backdrop-filter: blur(15px);
             backdrop-filter: blur(15px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05); /* Slightly stronger shadow */
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
             width: 100%;
             transition: all 0.4s ease;
             display: flex;
@@ -175,6 +186,7 @@
 
     <div class="hub-wrapper">
         <header>
+            <img src="icon.svg" alt="App Icon" class="header-image">
             <span class="label-top">Select Your Version</span>
             <h1 class="title">
                 <span>Birthday</span>
@@ -184,15 +196,17 @@
         </header>
 
         <nav class="nav-container">
-            <a href="v2.0/" class="nav-item">
+            <!-- v1.0 First -->
+            <a href="v1.0/" class="nav-item">
                 <div class="card-content">
-                    <h3>2.0</h3>
+                    <h3>1.0</h3>
                 </div>
             </a>
 
-            <a href="v1.0/" class="nav-item offset">
+            <!-- v2.0 Second (Offset) -->
+            <a href="v2.0/" class="nav-item offset">
                 <div class="card-content">
-                    <h3>1.0</h3>
+                    <h3>2.0</h3>
                 </div>
             </a>
         </nav>
