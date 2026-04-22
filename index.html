@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday App Hub</title>
+    <meta name="description" content="Birthday application selection portal. Access v1.0 and v2.0.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;700&family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fdfdfd;
+            --text: #3d4043;
+            --accent: #6366f1;
+            --accent-muted: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(99, 102, 241, 0.15); /* More visible border */
+            --font-jp: 'Noto Serif JP', serif;
+            --font-en: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-jp);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: 
+                radial-gradient(circle at 15% 15%, #f1f5f9 0%, transparent 35%),
+                radial-gradient(circle at 85% 85%, #f8fafc 0%, transparent 35%);
+            padding: clamp(20px, 5vw, 60px);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        .hub-wrapper {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(40px, 8vh, 60px);
+            flex: 1;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        header {
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 2rem;
+        }
+
+        .label-top {
+            font-family: var(--font-en);
+            font-size: 0.7rem;
+            letter-spacing: 0.6em;
+            color: var(--accent-muted);
+            margin-bottom: clamp(15px, 3vw, 25px);
+            display: block;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .title {
+            font-family: var(--font-en);
+            font-size: clamp(2.5rem, 9vw, 5rem);
+            font-weight: 200;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title span:nth-child(2) { 
+            margin-left: clamp(15px, 6vw, 60px); 
+            color: var(--accent);
+            font-style: italic;
+        }
+        .title span:nth-child(3) { 
+            margin-left: clamp(30px, 12vw, 120px);
+        }
+
+        .nav-container {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(20px, 4vw, 30px);
+            width: 100%;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        @media (min-width: 769px) {
+            .nav-item.offset { align-self: flex-end; }
+        }
+
+        .card-content {
+            background: var(--glass);
+            padding: clamp(25px, 5vw, 45px);
+            border-radius: 0 45px 45px 45px;
+            border: 1.5px solid var(--glass-border); /* Thicker and colored border */
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05); /* Slightly stronger shadow */
+            width: 100%;
+            transition: all 0.4s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-item:hover { transform: translateY(-8px); }
+        .nav-item:hover .card-content {
+            background: #ffffff;
+            box-shadow: 0 25px 50px rgba(99, 102, 241, 0.2);
+            border-color: var(--accent);
+        }
+
+        .card-content h3 {
+            font-family: var(--font-en);
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1;
+            color: var(--text);
+            transition: color 0.3s;
+        }
+        
+        .nav-item:hover .card-content h3 {
+            color: var(--accent);
+        }
+
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--accent-muted);
+            font-family: var(--font-en);
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            margin-top: auto;
+        }
+        footer a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+        footer a:hover {
+            border-bottom-color: currentColor;
+        }
+
+        @media (max-width: 768px) {
+            .hub-wrapper { gap: 40px; }
+            .title span:nth-child(2) { margin-left: 10px; }
+            .title span:nth-child(3) { margin-left: 20px; }
+            .card-content { border-radius: 0 30px 30px 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hub-wrapper">
+        <header>
+            <span class="label-top">Select Your Version</span>
+            <h1 class="title">
+                <span>Birthday</span>
+                <span>Application</span>
+                <span>Hub</span>
+            </h1>
+        </header>
+
+        <nav class="nav-container">
+            <a href="v2.0/" class="nav-item">
+                <div class="card-content">
+                    <h3>2.0</h3>
+                </div>
+            </a>
+
+            <a href="v1.0/" class="nav-item offset">
+                <div class="card-content">
+                    <h3>1.0</h3>
+                </div>
+            </a>
+        </nav>
+    </div>
+
+    <footer>
+        <div id="footer-copy"></div>
+    </footer>
+
+    <script>
+        (function(){
+            const baseYear = 2025;
+            const currentYear = new Date().getFullYear();
+            const hostname = location.hostname;
+            const footer = document.getElementById("footer-copy");
+            let footerHTML = "";
+            
+            let yearStr = baseYear.toString();
+            if (currentYear > baseYear) {
+                yearStr = `${baseYear}–${currentYear}`;
+            } else if (currentYear < baseYear) {
+                yearStr = `${currentYear}–${baseYear}`;
+            }
+            
+            if(hostname === "hamuzon.github.io"){
+                footerHTML = `&copy; ${yearStr} <a href="https://hamuzon.github.io" target="_blank">@hamuzon</a>`;
+            } else if (hostname.includes("hamuzon-jp.f5.si")) {
+                footerHTML = `&copy; ${yearStr} <a href="https://hamuzon-jp.f5.si" target="_blank">@hamuzon</a>`;
+            } else if(hostname.includes("hamusata.f5.si")){
+                footerHTML = `&copy; ${yearStr} <a href="https://home.hamusata.f5.si" target="_blank">@hamusata</a>`;
+            } else {
+                footerHTML = `&copy; ${yearStr} Birthday App Hub`;
+            }
+            
+            if(footer) footer.innerHTML = footerHTML;
+        })();
+    </script>
+</body>
+</html>

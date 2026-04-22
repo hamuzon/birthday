@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found（ページが見つかりません）</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;700&family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fdfdfd;
+            --text: #3d4043;
+            --accent: #6366f1;
+            --accent-muted: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(99, 102, 241, 0.2); /* More visible border */
+            --font-jp: 'Noto Serif JP', serif;
+            --font-en: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-jp);
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 15% 15%, #f1f5f9 0%, transparent 35%),
+                radial-gradient(circle at 85% 85%, #f8fafc 0%, transparent 35%);
+            min-height: 100vh;
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: var(--font-en);
+            font-size: clamp(6rem, 20vw, 12rem);
+            font-weight: 200;
+            color: var(--accent);
+            line-height: 1;
+            margin: 0;
+            letter-spacing: -0.05em;
+        }
+
+        p {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            margin: 1.5rem 0 0.5rem 0;
+            font-weight: 700;
+        }
+
+        .subtext {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            margin-bottom: 3.5rem;
+            font-family: var(--font-en);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        a.back {
+            display: inline-block;
+            background: var(--glass);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            color: var(--text);
+            text-decoration: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            font-family: var(--font-en);
+            border: 1.5px solid var(--glass-border); /* Thicker and colored border */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        a.back:hover {
+            background: #ffffff;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+            border-color: var(--accent);
+        }
+
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--accent-muted);
+            font-family: var(--font-en);
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+        }
+        footer a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+        footer a:hover {
+            border-bottom-color: currentColor;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: clamp(5rem, 25vw, 8rem); }
+            p { font-size: 1rem; }
+            .subtext { margin-bottom: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h1>404</h1>
+            <p>エラーが発生しました: ページが見つかりません</p>
+            <p class="subtext">Sorry, the page you're looking for doesn't exist.</p>
+            <a id="backLink" class="back" href="index.html">Return to Home</a>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footer-copy"></div>
+    </footer>
+
+    <script>
+        (function(){
+            const baseYear = 2025;
+            const currentYear = new Date().getFullYear();
+            const hostname = location.hostname;
+            const footer = document.getElementById("footer-copy");
+            let footerHTML = "";
+            
+            let yearStr = baseYear.toString();
+            if (currentYear > baseYear) {
+                yearStr = `${baseYear}–${currentYear}`;
+            } else if (currentYear < baseYear) {
+                yearStr = `${currentYear}–${baseYear}`;
+            }
+            
+            if(hostname === "hamuzon.github.io"){
+                footerHTML = `&copy; ${yearStr} <a href="https://hamuzon.github.io" target="_blank">@hamuzon</a>`;
+            } else if (hostname.includes("hamuzon-jp.f5.si")) {
+                footerHTML = `&copy; ${yearStr} <a href="https://hamuzon-jp.f5.si" target="_blank">@hamuzon</a>`;
+            } else if(hostname.includes("hamusata.f5.si")){
+                footerHTML = `&copy; ${yearStr} <a href="https://home.hamusata.f5.si" target="_blank">@hamusata</a>`;
+            } else {
+                footerHTML = `&copy; ${yearStr} Birthday App Hub`;
+            }
+            
+            if(footer) footer.innerHTML = footerHTML;
+        })();
+    </script>
+</body>
+</html>
