@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 Not Found（ページが見つかりません）</title>
+    <link rel="icon" href="./icon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;700&family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
@@ -55,6 +56,13 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header-image {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 10px 20px rgba(99, 102, 241, 0.2));
         }
 
         h1 {
@@ -133,6 +141,7 @@
             h1 { font-size: clamp(5rem, 25vw, 8rem); }
             p { font-size: 1rem; }
             .subtext { margin-bottom: 2.5rem; }
+            .header-image { width: 60px; height: 60px; }
         }
     </style>
 </head>
